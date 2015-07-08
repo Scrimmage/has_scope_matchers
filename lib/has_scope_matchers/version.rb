@@ -1,0 +1,3 @@
+module HasScopeMatchers
+  VERSION = "0.1.0"
+end
