@@ -36,4 +36,5 @@ describe HasScopeMatchers do
   it { is_expected.to define_scope(:color).unless(:show_all_colors?) }
   it { is_expected.to define_scope(:only_tall).type(:boolean).only(:index).if(:restrict_to_only_tall_trees?) }
   it { is_expected.to define_scope(:root_type).as(:root).allow_blank(true) }
+  it { is_expected.to define_scope(:args_paginate).type(:hash).using([:page, :per_page]) }
 end

@@ -20,7 +20,8 @@ module HasScopeMatchers
           only_correct? &&
           if_correct? &&
           unless_correct? &&
-          allow_blank_correct?
+          allow_blank_correct? &&
+          using_correct?
       end
 
       def failure_message
@@ -42,6 +43,11 @@ module HasScopeMatchers
 
       def type(value)
         @type = value
+        self
+      end
+
+      def using(value)
+        @using = value
         self
       end
 
@@ -106,6 +112,17 @@ module HasScopeMatchers
 
         if configuration[:type] != @type
           @failure_message = "expected scope to have type #{@type}, got #{configuration[:type] || 'nil'}"
+          false
+        else
+          true
+        end
+      end
+
+      def using_correct?
+        return true if @using.nil?
+
+        if configuration[:using] != @using
+          @failure_message = "expected scope to use #{@using}, got #{configuration[:using] || 'nil'}"
           false
         else
           true
